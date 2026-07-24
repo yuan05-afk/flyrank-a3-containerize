@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    ports:
+      # Host port is overridable (default 3000): API_PORT=3005 docker compose up
+      - "${API_PORT:-3000}:3000"
+    environment:
+      # Inside the compose network the database is reachable as "db", not localhost.
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-dev}@db:5432/tasks
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev}
+      POSTGRES_DB: tasks
+    volumes:
+      - taskdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tasks"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  taskdata:
