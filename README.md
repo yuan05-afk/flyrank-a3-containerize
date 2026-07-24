@@ -38,6 +38,12 @@ Inside the compose network the app reaches the database by the **service name `d
 
 404 body: `{"error":"Task not found"}`. All queries use `%s` placeholders — no string-glued SQL.
 
+## What it looks like
+
+API responses against the live Postgres stack:
+
+![Task API live responses on Postgres](assets/api-responses.png)
+
 ## Persistence (proven)
 
 Created a task, ran `docker compose down`, then `docker compose up` — the task was still there because the named **volume** `taskdata` outlives the container:

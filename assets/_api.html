@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#0f172a;color:#e2e8f0;font-family:Segoe UI,Arial;padding:28px}
+h1{color:#38bdf8;margin:0 0 6px;font-size:22px}
+.sub{color:#94a3b8;margin-bottom:16px}
+.card{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:16px;margin-bottom:14px}
+.h{color:#7dd3fc;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+pre{margin:0;white-space:pre-wrap;font-size:13px;line-height:1.45;color:#cbd5e1}
+.ok{color:#4ade80;font-weight:700}
+</style></head><body>
+<h1>Task API on Postgres — live responses</h1>
+<p class="sub">Same CRUD doors as A1/A2 · storage is a real Postgres container · <span class="ok">201 / 200 / 204 / 404</span></p>
+<div class="card"><div class="h">GET /health</div><pre>{"status":"ok","db":"ok"}</pre></div>
+<div class="card"><div class="h">GET /tasks</div><pre>[
+  {"id":1,"title":"Draft SEO report outline for client onboarding","done":false},
+  {"id":2,"title":"Review Crawl API response schemas","done":true},
+  {"id":3,"title":"Run the whole stack with one command","done":false},
+  {"id":5,"title":"I must survive down+up","done":false}
+]</pre></div>
+<div class="card"><div class="h">POST /tasks → 201</div><pre>{"id":4,"title":"Created on Postgres","done":false}</pre></div>
+</body></html>

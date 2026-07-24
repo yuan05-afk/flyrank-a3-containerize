@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#0c0c0c;padding:20px;font-family:Consolas,'Courier New',monospace}
+.term{background:#0c0c0c;color:#d4d4d4;font-size:14px;line-height:1.45;white-space:pre;padding:18px;border-radius:8px;border:1px solid #333}
+.title{color:#4ec9b0;margin:0 0 10px;font-family:Segoe UI,Arial}
+</style></head><body>
+<div class="title">Postgres in Docker — data persisted across docker compose down && up</div>
+<div class="term">﻿postgres@taskdb:/# psql -U postgres -d tasks
+
+tasks=# \dt
+         List of relations
+ Schema | Name  | Type  |  Owner   
+--------+-------+-------+----------
+ public | tasks | table | postgres
+(1 row)
+
+
+tasks=# SELECT * FROM tasks ORDER BY id;
+ id |                     title                      | done 
+----+------------------------------------------------+------
+  1 | Draft SEO report outline for client onboarding | f
+  2 | Review Crawl API response schemas              | t
+  3 | Run the whole stack with one command           | f
+  5 | I must survive down+up                         | f
+(4 rows)
+
+
+</div>
+</body></html>
