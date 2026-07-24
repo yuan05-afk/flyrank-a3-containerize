@@ -1,0 +1,20 @@
+# AI rematch v1 — quarantined. Shows the classic containerization mistakes.
+# (kept as a code-review artifact; NOT the submission)
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # MISTAKE 1: password hardcoded in the compose file (should be ${POSTGRES_PASSWORD} from .env)
+      # MISTAKE 2: points at localhost instead of the service name "db"
+      DATABASE_URL: postgres://postgres:dev@localhost:5432/tasks
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: tasks
+    # MISTAKE 3: no volume -> data vanishes on `docker compose down`
+    # MISTAKE 4: no healthcheck; api may start before the DB is ready
