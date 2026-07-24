@@ -1,0 +1,11 @@
+# Secrets & local artifacts — never commit these.
+.env
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+_pdf_extract.txt
+_checkpoint.py
+*.log
+W3 - Containerize your stack.pdf
