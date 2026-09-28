@@ -9,3 +9,6 @@ _pdf_extract.txt
 _checkpoint.py
 *.log
 W3 - Containerize your stack.pdf
+
+# Local Netlify folder
+.netlify
